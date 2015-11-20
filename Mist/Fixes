@@ -1,0 +1,16 @@
+Fixes/Bugs:
+	major: moving is bad, because certain directions have priority over others, for example if you press left arrow and then right arrow you will face right but walk left.
+		perhaps make it so that the first key that is pressed will always be the facing direction?
+		
+	elapsed time continues to run (since its connected to the System.currentTimeMillis() function) when the game is paused.
+	
+	minor: when enemies walk in the same direction that ooru is shooting, it wont aggro. (This only happened when i set the aggroSpeed to 0)
+	
+	enemies will glitch when collided and have aggro.
+	
+	items must be able to stack
+	
+	(fixed?) inventory must be able to have "holes" between items
+	
+	stacks in inventory
+	

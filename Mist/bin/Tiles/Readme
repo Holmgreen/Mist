@@ -1,0 +1,1 @@
+As ID:s for the tiles go, tiles are read from the tileset.png in such a manner that the first col is always 0,2,4... and second col 1,3,5... in the picture. 
