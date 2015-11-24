@@ -150,10 +150,10 @@ public abstract class WorldState extends GameState {
 	ooru.setLeft(Keys.keyState[Keys.LEFT]);
 	ooru.setDown(Keys.keyState[Keys.DOWN]);
 	ooru.setRight(Keys.keyState[Keys.RIGHT]);
-	if (Keys.keyState[Keys.R]) ooru.requestCasting(ui.getSpell(UserInterface.BLINK));
-	if (Keys.keyState[Keys.E]) ooru.requestCasting(ui.getSpell(UserInterface.SHADOW));
-	if (Keys.keyState[Keys.W]) ooru.requestCasting(ui.getSpell(UserInterface.SPELL3));
-	if (Keys.keyState[Keys.Q]) ooru.requestCasting(ui.getSpell(UserInterface.SPELL3));
+	if (Keys.keyState[Keys.R]) ooru.requestCasting(ui.getSpellButton(UserInterface.BLINK));
+	if (Keys.keyState[Keys.E]) ooru.requestCasting(ui.getSpellButton(UserInterface.SHADOW));
+	if (Keys.keyState[Keys.W]) ooru.requestCasting(ui.getSpellButton(UserInterface.SPELL3));
+	if (Keys.keyState[Keys.Q]) ooru.requestCasting(ui.getSpellButton(UserInterface.SPELL3));
 	if (Keys.isPressed(Keys.C)) requestTalking();
     }
 }

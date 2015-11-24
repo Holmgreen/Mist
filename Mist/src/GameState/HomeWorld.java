@@ -43,7 +43,6 @@ public class HomeWorld extends WorldState {
     public void populateNpcs() {
 	labnpc = new LabNPC(map);
 	labnpc.setPosition(525, 941);
-//	labnpc.setPosition(300, 300);
 	npcs[0] = labnpc;
     }
 

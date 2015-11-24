@@ -11,6 +11,7 @@ public abstract class Spell {
     
     //Cooldown related
     private boolean onCooldown;
+    
     private long elapsed;
     private long cdTimer;
     protected long cd;
@@ -25,9 +26,12 @@ public abstract class Spell {
     protected long castingTime;
     
     public Spell() {
-	infoString = "Cooldown: " + cd + " ms\nDamage: " + damage +  "\nCasting time: " + castingTime + " ms\n" + getInfoToString();
+	
     }
     
+    public void init(){
+    	infoString = "Cooldown: " + cd + " ms\nDamage: " + damage +  "\nCasting time: " + castingTime + " ms\n" + getInfoToString();
+    }
     public BufferedImage getIcon() {
 	return icon;
     }
@@ -100,5 +104,7 @@ public abstract class Spell {
     public boolean isAoe() {
 	return isAoe;
     }
+
+
 
 }
