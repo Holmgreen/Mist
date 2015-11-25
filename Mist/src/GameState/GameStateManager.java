@@ -147,5 +147,10 @@ public class GameStateManager {
 	invState = b;
 
     }
-
+    
+    public static void incrementTime(){
+    	stateOfGame++;
+    	JukeBox.play("enemydeath");
+    }
+    
 }

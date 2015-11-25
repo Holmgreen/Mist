@@ -6,6 +6,8 @@ import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
 
+import Inventory.Inventory;
+import Inventory.Item;
 import Main.GamePanel;
 
 public class UserInterface {
@@ -15,6 +17,8 @@ public class UserInterface {
 	private int maxOrbs;
 	private int gold;
 
+	private Inventory inv;
+	
 	private int healthSpace = 30;
 	private int healthSize = 10;
 	private int iconSpace = 3;
@@ -39,8 +43,8 @@ public class UserInterface {
 
 	public static final int BLINK = 0;
 	public static final int SHADOW = 1;
-	public static final int SPELL3 = 2;
-	public static final int SPELL4 = 3;
+	public static final int HEAL = 2;
+	public static final int CONSUME = 3;
 
 	public UserInterface() {
 		init();
@@ -58,12 +62,13 @@ public class UserInterface {
 	}
 
 	public void setAttributes(double health, double maxHealth, int orbs,
-			int maxOrbs, int gold) {
+			int maxOrbs, int gold, Inventory inv) {
 		this.health = health;
 		this.maxHealth = maxHealth;
 		this.orbs = orbs;
 		this.maxOrbs = maxOrbs;
 		this.gold = gold;
+		this.inv = inv;
 	}
 
 	private void loadImages() {
@@ -114,12 +119,18 @@ public class UserInterface {
 		}
 		else if (i == SHADOW) {
 			s = new Shadow();
-			buttons[SHADOW].assignSpell(new Shadow());
+			buttons[SHADOW].assignSpell(s);
+		}else if(i == HEAL){
+			s = new Heal();
+			buttons[HEAL].assignSpell(s);
+		}else if(i == CONSUME){
+			s = new Consume();
+			buttons[CONSUME].assignSpell(s);
 		}
 	}
 
 	public void draw(Graphics2D g) {
-
+		
 		// Draw SpellButtons.
 		for (int i = 0; i < buttons.length; i++) {
 			buttons[i].draw(g);
@@ -146,7 +157,21 @@ public class UserInterface {
 						null);
 			}
 		}
-
+		
+		//Draw black bar behind the orbs.
+		g.setColor(Color.black);
+		g.fillRect(GamePanel.WIDTH
+				- (healthSpace / 2 + (healthSize + iconSpace) * (maxOrbs - 1)) - iconSpace,
+				GamePanel.HEIGHT - healthSpace + healthSize,
+				healthSize*maxOrbs + iconSpace*(maxOrbs) + iconSpace, healthSize);
+		
+		//Write out number of orbs in inventory.
+		if(inv != null){
+		g.drawString("x" + inv.quantity(Item.ORB), GamePanel.WIDTH
+				- (healthSpace / 2 + (healthSize) * (maxOrbs - 1)) - iconSpace,
+				GamePanel.HEIGHT - healthSpace);
+		}
+		
 		// Draw orbs
 		for (int i = 0; i < maxOrbs; i++) {
 			if (i >= orbs) {

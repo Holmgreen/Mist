@@ -15,6 +15,7 @@ public class Shadow extends Spell{
 	stringLength = 21;
 	range = 80;
 	isAoe = true;
+	orbCost = 2;
 	init();
 	
 	try {
@@ -24,10 +25,13 @@ public class Shadow extends Spell{
     }
 
     public void use(Ooru ooru) {
+    	if(ooru.getOrbs() >= orbCost){
 	setCooldown();
 	ooru.doAoeDamage(damage);
 	ooru.setAttacking(true);
+	ooru.decrementOrbs(orbCost);
 	JukeBox.play("ooruwhitedmg");
+    	}
     }
     
     public int getRange() {

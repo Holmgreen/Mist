@@ -19,6 +19,8 @@ public abstract class Spell {
     
     protected boolean isAoe;
     
+    protected int orbCost;
+    
     protected String infoString;
     protected int stringLength;
     

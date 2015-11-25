@@ -61,6 +61,20 @@ public class Inventory extends Rectangle {
 	    return true;
 	}
     }
+    
+    //returns the quantity of item in this inventory.
+    public int quantity(int type){
+    	int sum = 0;
+    	int tempsum = 0;
+    	for(int i = 0; i < numBlocks; i++){
+    			if (itemStacks[i] != null &&itemStacks[i].getItem().getType() == type){
+    				//Count the amount of items in this stack
+    				tempsum = itemStacks[i].getSize();
+    				sum += tempsum;
+    			}
+    	}
+    	return sum;
+    }
 
     //returns the index of which itemStacks contains item at. The found itemStack must not be full for this method to return other than -1. 
     public int containsNotFullStackOf(Item item) {
@@ -71,12 +85,37 @@ public class Inventory extends Rectangle {
 	}
 	return -1;
     }
-
+    
+    //returns the index of the first item found in this inventory that is equal to item.
     public int contains(Item item) {
 	for (int i = 0; i < itemStacks.length; i++) {
 	    if (itemStacks[i].containsItem(item)) return i;
 	}
 	return -1;
+    }
+    
+  //returns the index of the first item found in this inventory that is of type type.
+    public int containsType(int type) {
+    	for (int i = 0; i < itemStacks.length; i++) {
+    	    if (itemStacks[i] != null && itemStacks[i].getItem().getType() == type) return i;
+    	}
+    	return -1;
+        }
+    
+    //finds the first itemstack containing item of type type and removes amount number of items from this stack.
+    public void searchAndDestroy(int type, int amount){
+    	int index = containsType(type);
+    	itemStacks[index].remove(amount);
+    }
+    
+    //same as search and destroy but also returns true if item was found and destroyed.
+    public boolean bSearchAndDestroy(int type, int amount){
+    	int index = containsType(type);
+    	if(index != -1){
+    		itemStacks[index].remove(amount);
+    		return true;
+    	}
+    	return false;
     }
 
     public boolean add(ItemStack itemStack, int index) {

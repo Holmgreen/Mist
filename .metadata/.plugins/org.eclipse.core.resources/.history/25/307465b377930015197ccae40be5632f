@@ -1,0 +1,47 @@
+package Entity;
+
+import javax.imageio.ImageIO;
+
+import Audio.JukeBox;
+import Inventory.Item;
+
+public class Consume extends Spell{
+
+	//Consumes an orb in the inventory and increments the orb count.
+    public Consume() {
+    super();
+    cd = 1000;
+	castingTime = 1000;
+	damage = 10;
+	stringLength = 21;
+	range = 80;
+	init();
+	
+	try {
+	    icon = ImageIO.read(getClass().getResourceAsStream("/Objects/shadow.png"));
+	}catch(Exception e) {e.printStackTrace();}
+	
+    }
+
+    public void use(Ooru ooru) {
+    	System.out.println("requesting consume");
+    	if(ooru.getInventory().bSearchAndDestroy(Item.ORB, 1)){
+    		setCooldown();
+    		ooru.incrementOrbs();
+    		System.out.println("using consume");
+    		
+    		//Change this
+    		JukeBox.play("ooruwhitedmg");
+    	}
+    }
+    
+    public int getRange() {
+	return range;
+    }
+
+    public String getInfoToString() {
+	return "Does aoe damage\nwithin specific range";
+    }
+    
+    
+}

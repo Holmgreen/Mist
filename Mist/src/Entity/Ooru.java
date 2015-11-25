@@ -37,7 +37,10 @@ public class Ooru extends Mob {
 	private ArrayList<Animation> gearAnimations;
 
 	private UserInterface ui;
-
+	
+	//Orb timers
+	private long orbTimer, orbTime, elapsed;
+	
 	private int gold;
 
 	private Rectangle aoeBox;
@@ -101,7 +104,7 @@ public class Ooru extends Mob {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		// inventory
 		inventory = new Inventory();
 
@@ -114,7 +117,7 @@ public class Ooru extends Mob {
 
 		// Acceleration
 		moveSpeed = 1.6;
-		maxSpeed = 1.6;
+		maxSpeed = 5.2;
 		stopSpeed = 1.6;
 
 		// Damage
@@ -146,6 +149,16 @@ public class Ooru extends Mob {
 		animation = new Animation();
 		setAnimation(IDLE_DOWN);
 		gearAnimations = new ArrayList<Animation>();
+		
+		
+		//Test the heal spell.
+		ui.activateSpell(UserInterface.HEAL);
+		
+		//Test consume spell.
+		ui.activateSpell(UserInterface.CONSUME);
+		
+		//Initiate the orb regeneration time in ms.
+		orbTime = 5000;
 	}
 
 	public boolean isCasting() {
@@ -154,7 +167,8 @@ public class Ooru extends Mob {
 
 	public void requestCasting(SpellButton sb) {
 		Spell sp = sb.getSpell();
-		if(sp == null) return;
+		if (sp == null)
+			return;
 		if (!sp.onCooldown()) {
 			if (!casting) {
 				casting = true;
@@ -275,7 +289,8 @@ public class Ooru extends Mob {
 		animation.setDelay(DELAYS[currentAction]);
 		if (gearAnimations != null) {
 			for (int j = 0; j < gearAnimations.size(); j++) {
-				gearAnimations.get(j).setFrames(shoulderSprites.get(currentAction));
+				gearAnimations.get(j).setFrames(
+						shoulderSprites.get(currentAction));
 				gearAnimations.get(j).setDelay(DELAYS[currentAction]);
 			}
 		}
@@ -326,13 +341,27 @@ public class Ooru extends Mob {
 	}
 
 	public void incrementOrbs() {
+		if(orbs < maxOrbs)
 		orbs++;
-		if (orbs > maxOrbs) {
-			orbs = 0;
-			health++;
-			maxHealth++;
-		}
+		
 	}
+	
+	public void decrementOrbs() {
+		if(orbs > 0)
+		orbs--;
+	}
+	
+	public void decrementOrbs(int i) {
+		if(orbs - i >= 0)
+		orbs-=i;
+	}
+	
+	public void incrementHealth(){
+		if(health < maxHealth)
+		health++;
+	}
+	
+	
 
 	// Checkers
 	public boolean checkTeleportAllowed() {
@@ -533,9 +562,10 @@ public class Ooru extends Mob {
 			updateState(stateOfOoru);
 			stateOfOoru++;
 		}
+		checkOrbUpdate();
 		checkCasting();
 		cBar.update();
-		ui.setAttributes(health, maxHealth, orbs, maxOrbs, gold);
+		ui.setAttributes(health, maxHealth, orbs, maxOrbs, gold, inventory);
 
 		if (!casting) {
 			getNextPosition();
@@ -551,11 +581,10 @@ public class Ooru extends Mob {
 		animation.update();
 
 		// Update the gear animations that are specific for this mob.
-		
 		for (int i = 0; i < gearAnimations.size(); i++) {
 			gearAnimations.get(i).update();
 		}
-		
+
 	}
 
 	private void updateState(int currentState) {
@@ -564,8 +593,7 @@ public class Ooru extends Mob {
 		// anything.
 		// Spells has to be taken away/inserted into a spellbutton.
 
-		
-		//Completed labyrinth!
+		// Completed labyrinth!
 		if (currentState == 0) {
 			// load shoulderSprites
 			try {
@@ -590,12 +618,15 @@ public class Ooru extends Mob {
 			shoulderAnimation = new Animation();
 			gearAnimations.add(shoulderAnimation);
 			setAnimation(currentAction);
-			
-			//activate spells.
+
+			// activate spells.
 			ui.activateSpell(UserInterface.SHADOW);
+		} else if (currentState == 1) {
+			
+			//Stones brought to labnpc.
+			ui.activateSpell(UserInterface.BLINK);
 		}
-		
-		
+
 	}
 
 	public void draw(Graphics2D g) {
@@ -630,6 +661,16 @@ public class Ooru extends Mob {
 
 	public void setMap(TileMap map) {
 		this.tileMap = map;
+	}
+	
+	private void checkOrbUpdate(){
+		 elapsed = System.currentTimeMillis() - orbTimer;
+		    if (elapsed >= orbTime) {
+		    	if(orbs < maxOrbs){
+		    	orbs++;
+		    	}
+		    	orbTimer = System.currentTimeMillis();
+		    }
 	}
 
 }
