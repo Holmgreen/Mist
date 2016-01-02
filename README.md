@@ -8,7 +8,7 @@ What is left:
   There is no current way to "win" the game, you simply collect orbs and use spells.
   To design the home starting house.
   Saving and loading game.
-  When Ooru (main character) talks he should stand still and the shoulders that he is wearing is supposed to be given to him   after he completes the labyrinth without teleporting.
+  When Ooru (main character) talks he should stand still.
   
 Controls:
   I - open inventory
@@ -18,7 +18,7 @@ Controls:
   up, down, left, right - move
   E - Cast shadow
   F - Teleport
-  C - Talk to nearby NPC
+  (Important to advance in the game!) C - Talk to nearby NPC
   (Possible new keys emerge now and then for new spells)
 
   
