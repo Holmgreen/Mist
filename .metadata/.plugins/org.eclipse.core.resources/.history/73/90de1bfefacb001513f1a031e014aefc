@@ -76,7 +76,7 @@ public class SpellButton extends Rectangle {
 						y + 10);
 			} else {
 				g.drawImage(buttonImage, x, y, width, height, null);
-				g.setColor(Color.GRAY);
+				g.setColor(Color.WHITE);
 				g.setFont(cdFont);
 				g.drawString("" + spell.getKey(), x + 2, y + 10);
 			}

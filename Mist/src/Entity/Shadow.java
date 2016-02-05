@@ -16,6 +16,7 @@ public class Shadow extends Spell{
 	range = 80;
 	isAoe = true;
 	orbCost = 2;
+	key = "E";
 	init();
 	
 	try {

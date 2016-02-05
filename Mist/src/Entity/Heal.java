@@ -13,6 +13,7 @@ public class Heal extends Spell {
 		castingTime = 1000;
 		stringLength = 21;
 		orbCost = 1;
+		key = "W";
 		init();
 
 		try {

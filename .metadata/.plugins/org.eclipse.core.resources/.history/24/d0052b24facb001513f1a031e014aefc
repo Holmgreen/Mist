@@ -109,7 +109,7 @@ public abstract class Spell {
 	return isAoe;
     }
 
-	public String getKey() {
+	public int getKey() {
 		return key;
 	}
 

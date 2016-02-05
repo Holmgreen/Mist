@@ -12,6 +12,7 @@ public class Blink extends Spell {
 	castingTime = 0;
 	damage = 0;
 	range = 4; //Amount of tiles that Ooru will teleport to
+	key = "F";
 
 	stringLength = 20;
 	init();

@@ -13,6 +13,7 @@ public class Consume extends Spell{
     cd = 5000;
 	castingTime = 500;
 	stringLength = 21;
+	key = "Q";
 	init();
 	
 	try {
