@@ -18,7 +18,7 @@ Controls:
   up, down, left, right - move
   E - Cast shadow
   F - Teleport
-  (Important to advance in the game!) C - Talk to nearby NPC
+  C - Interact with objects (example: talk to nearby NPC) (Important to advance in the game!)
   (Possible new keys emerge now and then for new spells)
 
   
