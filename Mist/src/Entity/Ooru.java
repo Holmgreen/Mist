@@ -109,8 +109,8 @@ public class Ooru extends Mob {
 		inventory = new Inventory();
 
 		// Attributes
-		health = 5;
-		maxHealth = 5;
+		health = 8;
+		maxHealth = 8;
 		orbs = 2;
 		maxOrbs = 5;
 		resistance = 2;
