@@ -10,12 +10,12 @@ public class Shadow extends Spell{
     //Must init() here.
     super();
     cd = 800;
-	castingTime = 100;
-	damage = 10;
+	castingTime = 500;
+	damage = 2;
 	stringLength = 21;
 	range = 80;
 	isAoe = true;
-	orbCost = 2;
+	orbCost = 1;
 	key = "E";
 	init();
 	

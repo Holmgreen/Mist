@@ -10,7 +10,7 @@ public class Consume extends Spell{
 	//Consumes an orb in the inventory and increments the orb count.
     public Consume() {
     super();
-    cd = 5000;
+    cd = 2000;
 	castingTime = 500;
 	stringLength = 21;
 	key = "Q";

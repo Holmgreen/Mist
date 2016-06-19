@@ -116,8 +116,8 @@ public class Ooru extends Mob {
 		resistance = 2;
 
 		// Acceleration
-		moveSpeed = 1.6;
-		maxSpeed = 5.2;
+		moveSpeed = 0.6;
+		maxSpeed = 2;
 		stopSpeed = 1.6;
 
 		// Damage

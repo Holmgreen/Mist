@@ -35,7 +35,7 @@ public class TellingState extends GameState {
 
 		story[0] = "Once upon a time, in the primitive lands of \nAlteria, the young one lived. \nWith a power yet to be discovered.";
 		story[1] = "His name was Ooru and the whole of Alteria\nknew of the prophecy that told the\nlegend of an ascending savior.";
-		story[2] = "At the time, evil grew greater and faster\n than ever.";
+		story[2] = "At the time, evil grew greater and faster\nthan ever.";
 
 		for (int i = 0; i < story.length; i++) {
 			sb.append(story[i]);
